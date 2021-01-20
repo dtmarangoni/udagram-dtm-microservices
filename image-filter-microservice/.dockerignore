@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+.environment_vars
+.gitignore
+.dockerignore
+dockerfile
+*.md
+tslint.json
+udagram*postman*.json
