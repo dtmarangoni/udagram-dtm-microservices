@@ -1,0 +1,5 @@
+## Use Nginx base image
+FROM nginx:stable
+
+# Copy the Ngix configuration file to Nginx
+COPY nginx.conf /etc/nginx/nginx.conf
