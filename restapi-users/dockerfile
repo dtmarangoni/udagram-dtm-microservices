@@ -1,0 +1,21 @@
+# Use NodeJS base image
+FROM node:14
+
+# Create app directory in Docker
+WORKDIR /usr/rest-api-users
+
+# Install app dependencies by copying
+# package.json and package-lock.json
+COPY package*.json ./
+
+# Install all dependencies in Docker
+RUN npm install typescript -g && npm ci
+
+# Copy app from local environment into the Docker image
+COPY . .
+
+# Build the app
+RUN tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc
+
+# Define Docker’s behavior when the image is run
+CMD ["node", "./www/server.js"]
