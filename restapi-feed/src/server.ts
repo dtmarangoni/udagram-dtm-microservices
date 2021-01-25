@@ -8,6 +8,7 @@ import { setCORS } from './CORS.middleware';
 import { IndexRouter } from './controllers/v0/index.router';
 import { V0MODELS } from './controllers/v0/model.index';
 import { currentConfig } from './config/config';
+import { errorLogger, infoLogger } from './logger.middleware';
 
 // The main method
 (async () => {
@@ -26,6 +27,9 @@ import { currentConfig } from './config/config';
     // CORS should be restricted
     app.use(setCORS);
 
+    // Server info logger middleware
+    app.use(infoLogger);
+
     // The router to use for API version V0
     app.use('/api/v0/', IndexRouter);
 
@@ -33,6 +37,9 @@ import { currentConfig } from './config/config';
     app.get('/', async (req, res) => {
         return res.send('Feed backend REST API');
     });
+
+    // Server error logger middleware
+    app.use(errorLogger);
 
     // Start the Node Express server
     app.listen(port, () => {
