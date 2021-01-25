@@ -1,4 +1,6 @@
 node_modules
+log
+www
 npm-debug.log
 .environment_vars
 .gitignore

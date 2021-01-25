@@ -11,7 +11,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7985e1a4-fb34-4ac4-8b5e-d39986d7347f",
 						"exec": [
 							"pm.test(\"Status code is 201\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
@@ -36,7 +35,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJ1ZGFncmFtLXJlc3RhcGktZGV2IiwiaWF0IjoxNjEwNjM3NTk2LCJleHAiOjE2MTA2Mzc4OTZ9.cjlm5tIqNRIJB7Pt2vKUC2lUOUQrRdQHHs4BWk2cCps",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJyZXN0YXBpLWRldiIsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjoxOTE2MjM5MDIyfQ.Vn0qP73XqpycNgMAfTO49uzfqUxcElnfavIdQUY6c6I",
 							"type": "string"
 						}
 					]
@@ -65,7 +64,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cc8bc24a-1bb2-4019-904f-d1b8d79cc5f1",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {\r",
 							"    pm.response.to.have.status(401);\r",
@@ -109,7 +107,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "fc1b04a4-8aa9-4ca9-b819-6ba59f3cde37",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {\r",
 							"    pm.response.to.have.status(401);\r",
@@ -160,7 +157,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b2a877b6-45f0-4aa3-ab14-b8ff7034ac9f",
 						"exec": [
 							"pm.test(\"Status code is 500\", function () {\r",
 							"    pm.response.to.have.status(500);\r",
@@ -211,7 +207,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e49324aa-ff3d-4de1-901d-b339f71e35ae",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {\r",
 							"    pm.response.to.have.status(401);\r",
@@ -233,7 +228,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJ1ZGFncmFtcmVzdGFwaWRldiIsImlhdCI6MTYxMDYzNzYyNCwiZXhwIjoxNjE1ODIxNjI0fQ.gxhT04WeoFRtVUPqX67Czbu-TVWKUXBM4_rAbAPzchg",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJhcGktZGV2IiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE5MTYyMzkwMjJ9.TO5Nsh2yyOntsUVs2mTutiT4abe2XSaCGjtU663ZEv8",
 							"type": "string"
 						}
 					]
@@ -262,7 +257,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "225ee25f-a920-4241-87d0-56171536e848",
 						"exec": [
 							"pm.test(\"Status code is 201\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
@@ -284,7 +278,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJ1ZGFncmFtLXJlc3RhcGktZGV2IiwiaWF0IjoxNjEwNjM3NjI0LCJleHAiOjE2MTU4MjE2MjR9.LSf7bEjNoAGkYU5WN8V1VztSnOgNw2yD1zdO_h3JnRY",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJyZXN0YXBpLWRldiIsImlhdCI6MTYxMTQ0MzQwMiwiZXhwIjoxNjE2NjI3NDAyfQ.DkhtKLvpkr6fD7sbXygJh3cy0qYISLrujMr1S5_Dtmg",
 							"type": "string"
 						}
 					]
@@ -318,7 +312,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d6e352e4-78ca-4e8d-b5ec-7829ed362fa3",
 						"exec": [
 							"pm.test(\"Status code is 400\", function () {\r",
 							"    pm.response.to.have.status(400);\r",
@@ -342,7 +335,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJ1ZGFncmFtLXJlc3RhcGktZGV2IiwiaWF0IjoxNjEwNjM3NjI0LCJleHAiOjE2MTU4MjE2MjR9.LSf7bEjNoAGkYU5WN8V1VztSnOgNw2yD1zdO_h3JnRY",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJyZXN0YXBpLWRldiIsImlhdCI6MTYxMTQ0MzQwMiwiZXhwIjoxNjE2NjI3NDAyfQ.DkhtKLvpkr6fD7sbXygJh3cy0qYISLrujMr1S5_Dtmg",
 							"type": "string"
 						}
 					]
@@ -370,7 +363,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9d1b4bf8-29e6-423f-a303-135b3b0e75c6",
 						"exec": [
 							"pm.test(\"Status code is 500\", function () {\r",
 							"    pm.response.to.have.status(500);\r",
@@ -394,7 +386,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJ1ZGFncmFtLXJlc3RhcGktZGV2IiwiaWF0IjoxNjEwNjM3NjI0LCJleHAiOjE2MTU4MjE2MjR9.LSf7bEjNoAGkYU5WN8V1VztSnOgNw2yD1zdO_h3JnRY",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiJyZXN0YXBpLWRldiIsImlhdCI6MTYxMTQ0MzQwMiwiZXhwIjoxNjE2NjI3NDAyfQ.DkhtKLvpkr6fD7sbXygJh3cy0qYISLrujMr1S5_Dtmg",
 							"type": "string"
 						}
 					]
@@ -428,7 +420,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f64a5d3c-6b5a-472d-bb4d-30a457017389",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {\r",
 							"    pm.response.to.have.status(401);\r",
@@ -477,7 +468,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a3a6fc97-5b40-4772-825d-ef7adcb563fe",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {\r",
 							"    pm.response.to.have.status(401);\r",
@@ -533,7 +523,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cff3ea15-f645-4e4f-8285-97b63d37b0cc",
 						"exec": [
 							"pm.test(\"Status code is 500\", function () {\r",
 							"    pm.response.to.have.status(500);\r",
@@ -588,7 +577,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "1961e2d0-c6ac-49ba-ba91-8ad70d4b8971",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -598,7 +586,6 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "0548e3ca-a37f-44f5-8437-ada6eaa799b1",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -608,10 +595,8 @@
 	],
 	"variable": [
 		{
-			"id": "f99c95ef-4af2-44b6-b0c4-78d6f1256af0",
 			"key": "host",
-			"value": "http://localhost:8086"
+			"value": "http://localhost:8084"
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
