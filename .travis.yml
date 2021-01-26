@@ -1,0 +1,13 @@
+# Pre-testing installs
+install:
+    - echo "nothing needs to be installed"
+
+# Scripts to be run such as tests
+before_script:
+    - echo "no tests"
+
+script:
+    # Print the docker version for logging
+    - docker --version
+    - docker-compose build --parallel
+    - docker-compose push
