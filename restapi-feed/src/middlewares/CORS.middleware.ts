@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { currentConfig } from './config/config';
-
+import { currentConfig } from '../config/config';
 
 /**
  * Middleware to set CORS headers.
@@ -21,7 +20,10 @@ export function setCORS(req: Request, res: Response, next: NextFunction) {
     }
 
     // Set the allowed headers
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    );
 
     // Proceed to next middleware
     return next();

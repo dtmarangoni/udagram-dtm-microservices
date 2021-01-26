@@ -1,7 +1,6 @@
 import AWS = require('aws-sdk');
 
-import { currentConfig } from './config/config';
-
+import { currentConfig } from '../config/config';
 
 // Configure AWS from local saved user credentials using default
 // profile

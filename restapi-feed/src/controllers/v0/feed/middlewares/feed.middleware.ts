@@ -1,10 +1,10 @@
-import { Request, Response, NextFunction } from "express";
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { encode } from "querystring";
-import * as jwt from "jsonwebtoken";
+import { Request, Response, NextFunction } from 'express';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { encode } from 'querystring';
+import * as jwt from 'jsonwebtoken';
 
-import * as AWS from "../../../../aws";
-import { currentConfig } from "../../../../config/config";
+import * as AWS from '../../../../services/aws';
+import { currentConfig } from '../../../../config/config';
 
 /**
  * Creat the Feed REST API id token.
@@ -28,7 +28,7 @@ export function generateClientIDJWT(): string {
 export async function requireAuth(req: Request, res: Response, next: NextFunction) {
     // Send the current user JWT token to Users API server validate it
     let authResp: AxiosResponse;
-    let axiosConf: AxiosRequestConfig = { headers: { "Content-Type": "application/json" } };
+    let axiosConf: AxiosRequestConfig = { headers: { 'Content-Type': 'application/json' } };
 
     if (req?.headers?.authorization) {
         axiosConf.headers.Authorization = req.headers.authorization;
@@ -66,12 +66,12 @@ export function requireFeedData(req: Request, res: Response, next: NextFunction)
 
     // Check if the caption is valid
     if (!caption) {
-        return res.status(400).json({ error: { message: "Caption is required or malformed" } });
+        return res.status(400).json({ error: { message: 'Caption is required or malformed' } });
     }
 
     // Check if the filename is valid
     if (!fileName) {
-        return res.status(400).send({ error: { message: "File url is required" } });
+        return res.status(400).send({ error: { message: 'File url is required' } });
     }
 
     // Attach the feed data to request
@@ -104,7 +104,7 @@ export async function filterImage(req: Request, res: Response, next: NextFunctio
             `${currentConfig.img_microservice_host}/api/v0/auth/access-token`,
             {
                 headers: {
-                    "Content-Type": "application/json",
+                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${clientIDToken}`,
                 },
             }
@@ -117,10 +117,10 @@ export async function filterImage(req: Request, res: Response, next: NextFunctio
             `${currentConfig.img_microservice_host}/api/v0/filteredimage?${encodedUrl}`,
             {
                 headers: {
-                    "Content-Type": "application/json",
+                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${accessTokenRes.data.access_token}`,
                 },
-                responseType: "arraybuffer",
+                responseType: 'arraybuffer',
             }
         );
 
@@ -128,7 +128,7 @@ export async function filterImage(req: Request, res: Response, next: NextFunctio
         const putSignedUrl = AWS.getPutSignedUrl(fileName);
         // Send the filtered file to AWS S3
         await axios.put(putSignedUrl, filteredImgRes.data, {
-            headers: { "Content-Type": filteredImgRes.headers["content-type"] },
+            headers: { 'Content-Type': filteredImgRes.headers['content-type'] },
         });
     } catch (error) {
         return res.status(500).send({

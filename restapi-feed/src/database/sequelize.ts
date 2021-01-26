@@ -1,6 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
-import { currentConfig } from './config/config';
-
+import { currentConfig } from '../config/config';
 
 // Instantiate new Sequelize instance
 export const sequelize = new Sequelize({

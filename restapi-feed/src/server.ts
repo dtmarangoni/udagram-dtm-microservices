@@ -1,14 +1,16 @@
 // The Node Express entrance point
 
 import express from 'express';
-import { sequelize } from './sequelize';
+import { ErrorRequestHandler, Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
 
-import { setCORS } from './CORS.middleware';
+import { sequelize } from './database/sequelize';
+import { setCORS } from './middlewares/CORS.middleware';
 import { IndexRouter } from './controllers/v0/index.router';
 import { V0MODELS } from './controllers/v0/model.index';
 import { currentConfig } from './config/config';
-import { errorLogger, infoLogger } from './logger.middleware';
+import { errorLogger, infoLogger } from './middlewares/logger.middleware';
+import { errorHandler } from './middlewares/general.middleware';
 
 // The main method
 (async () => {
@@ -40,6 +42,9 @@ import { errorLogger, infoLogger } from './logger.middleware';
 
     // Server error logger middleware
     app.use(errorLogger);
+
+    // Gets any raised error and sends to the client
+    app.use(errorHandler);
 
     // Start the Node Express server
     app.listen(port, () => {
