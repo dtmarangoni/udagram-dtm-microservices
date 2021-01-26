@@ -12,14 +12,14 @@ services:
     restapi-users:
         build: ./restapi-users
         image: dtmarangoni/udagram-dtm-restapi-users
-        env_file: ./restapi-users/.environment_vars
+        # env_file: ./restapi-users/.environment_vars
 
     restapi-feed:
         build: ./restapi-feed
         image: dtmarangoni/udagram-dtm-restapi-feed
-        env_file: ./restapi-feed/.environment_vars
+        # env_file: ./restapi-feed/.environment_vars
 
     img-filter:
         build: ./image-filter-microservice
         image: dtmarangoni/udagram-dtm-img-filter
-        env_file: ./image-filter-microservice/.environment_vars
+        # env_file: ./image-filter-microservice/.environment_vars
