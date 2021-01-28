@@ -1,0 +1,234 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: img-filter-srv
+    labels:
+        app: img-filter
+        tier: backend
+        component: server
+        part-of: udagram-dtm-microservices
+spec:
+    selector:
+        app: img-filter
+    ports:
+        - protocol: TCP
+          port: $(IMG_MSERV_PORT)
+          targetPort: $(IMG_MSERV_PORT)
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: img-filter
+    labels:
+        app: img-filter
+        tier: backend
+        component: server
+        part-of: udagram-dtm-microservices
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: img-filter
+    template:
+        metadata:
+            labels:
+                app: img-filter
+    spec:
+        containers:
+            - name: img-filter
+              image: dtmarangoni/udagram-dtm-img-filter
+              ports:
+                  - containerPort: $(IMG_MSERV_PORT)
+              envFrom:
+                  - configMapRef:
+                        name: config-envs
+                  - secretRef:
+                        name: secrets
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: restapi-users-srv
+    labels:
+        app: restapi-users
+        tier: backend
+        component: server
+        part-of: udagram-dtm-microservices
+spec:
+    selector:
+        app: restapi-users
+    ports:
+        - protocol: TCP
+          port: $(RESTAPI_USERS_PORT)
+          targetPort: $(RESTAPI_USERS_PORT)
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: restapi-users
+    labels:
+        app: restapi-users
+        tier: backend
+        component: server
+        part-of: udagram-dtm-microservices
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: restapi-users
+    template:
+        metadata:
+            labels:
+                app: restapi-users
+    spec:
+        containers:
+            - name: restapi-users
+              image: dtmarangoni/udagram-dtm-restapi-users
+              ports:
+                  - containerPort: $(RESTAPI_USERS_PORT)
+              envFrom:
+                  - configMapRef:
+                        name: config-envs
+                  - secretRef:
+                        name: secrets
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: restapi-feed-srv
+    labels:
+        app: restapi-feed
+        tier: backend
+        component: server
+        part-of: udagram-dtm-microservices
+spec:
+    selector:
+        app: restapi-feed
+    ports:
+        - protocol: TCP
+          port: $(RESTAPI_FEED_PORT)
+          targetPort: $(RESTAPI_FEED_PORT)
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: restapi-feed
+    labels:
+        app: restapi-feed
+        tier: backend
+        component: server
+        part-of: udagram-dtm-microservices
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: restapi-feed
+    template:
+        metadata:
+            labels:
+                app: restapi-feed
+    spec:
+        containers:
+            - name: restapi-feed
+              image: dtmarangoni/udagram-dtm-restapi-feed
+              ports:
+                  - containerPort: $(RESTAPI_FEED_PORT)
+              envFrom:
+                  - configMapRef:
+                        name: config-envs
+                  - secretRef:
+                        name: secrets
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: reverse-proxy-srv
+    labels:
+        app: reverse-proxy
+        tier: backend
+        component: server
+        part-of: udagram-dtm-microservices
+spec:
+    selector:
+        app: reverse-proxy
+    ports:
+        - protocol: TCP
+          port: 8084
+          targetPort: 8084
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: reverse-proxy
+    labels:
+        app: reverse-proxy
+        tier: backend
+        component: server
+        part-of: udagram-dtm-microservices
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: reverse-proxy
+    template:
+        metadata:
+            labels:
+                app: reverse-proxy
+    spec:
+        containers:
+            - name: reverse-proxy
+              image: dtmarangoni/udagram-dtm-reverse-proxy
+              ports:
+                  - containerPort: 8084
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: frontend-ionic-srv
+    labels:
+        app: frontend-ionic
+        tier: frontend
+        component: server
+        part-of: udagram-dtm-microservices
+spec:
+    selector:
+        app: frontend-ionic
+    ports:
+        - protocol: TCP
+          port: 80
+          targetPort: 80
+    type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: frontend-ionic
+    labels:
+        app: frontend-ionic
+        tier: frontend
+        component: server
+        part-of: udagram-dtm-microservices
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: frontend-ionic
+    template:
+        metadata:
+            labels:
+                app: frontend-ionic
+    spec:
+        containers:
+            - name: frontend-ionic
+              image: dtmarangoni/udagram-dtm-frontend-ionic
+              ports:
+                  - containerPort: 80

@@ -1,0 +1,11 @@
+{
+    "name": "udagram-dtm-microservices",
+    "version": "1.0.0",
+    "scripts": {
+        "secrets": "kubectl apply -f ./k8s.secrets.yml",
+        "envs": "kubectl create configmap config-envs --from-env-file=./k8s.config-envs",
+        "deploy": "kubectl apply -f ./kubernetes.yml",
+        "hpa": "kubectl create -f ./k8s.autoscaler.yml",
+        "k8s": "npm run secrets && npm run envs && npm run deploy && npm run hpa"
+    }
+}
