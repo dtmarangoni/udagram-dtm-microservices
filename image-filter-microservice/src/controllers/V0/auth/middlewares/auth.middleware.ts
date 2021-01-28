@@ -45,14 +45,16 @@ export function validateClientJWT(req: Request, res: Response, next: NextFunctio
     const token = req.token;
 
     // Check if the JWT client token is valid
-    return jwt.verify(token, currentConfig.restapi_private_key, (err, decoded: any) => {
+    return jwt.verify(token, currentConfig.restapi_feed_private_key, (err, decoded: any) => {
         if (err) {
             return res
                 .status(500)
-                .send({ error: { message: "Couldn't validate the client JWT or the token is invalid." } });
+                .send({
+                    error: { message: "Couldn't validate the client JWT or the token is invalid." },
+                });
         }
 
-        if (!decoded?.client_id || decoded.client_id !== currentConfig.restapi_client_id) {
+        if (!decoded?.client_id || decoded.client_id !== currentConfig.restapi_feed_client_id) {
             return res.status(401).send({ error: { message: 'No access is granted.' } });
         }
 
@@ -79,7 +81,9 @@ export function validateAccessJWT(req: Request, res: Response, next: NextFunctio
         if (err) {
             return res
                 .status(500)
-                .send({ error: { message: "Couldn't validate the access JWT or the token is invalid." } });
+                .send({
+                    error: { message: "Couldn't validate the access JWT or the token is invalid." },
+                });
         }
 
         // If its valid proceed to next Node Express middleware

@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 
-import { requireHeadersJWT, validateClientJWT, validateAccessJWT } from '../middlewares/auth.middleware';
+import { requireHeadersJWT, validateClientJWT } from '../middlewares/auth.middleware';
 import { currentConfig } from '../../../../config/config';
 
 const router: Router = Router();
@@ -15,12 +15,18 @@ const router: Router = Router();
 router.get('/access-token', requireHeadersJWT, validateClientJWT, (req: Request, res: Response) => {
     try {
         // For testing purpose the expiration time has been extended
-        const token = jwt.sign({ client_id: currentConfig.restapi_client_id }, currentConfig.img_jwt_secret, {
-            expiresIn: '60 days',
-        });
+        const token = jwt.sign(
+            { client_id: currentConfig.restapi_feed_client_id },
+            currentConfig.img_jwt_secret,
+            {
+                expiresIn: '60 days',
+            }
+        );
         return res.status(201).json({ access_token: token });
     } catch (error) {
-        return res.status(500).json({ error: { message: 'Error while generating the JWT access token.' } });
+        return res
+            .status(500)
+            .json({ error: { message: 'Error while generating the JWT access token.' } });
     }
 });
 
