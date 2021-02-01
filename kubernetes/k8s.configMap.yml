@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: config-envs
+    labels:
+        part-of: udagram-dtm-microservices
+data:
+    IMG_MSERV_PORT: '8086'
+    IMG_MSERV_CORS_ORIGIN: http://restapi-feed-srv:8085
+    RESTAPI_USERS_PORT: '8087'
+    RESTAPI_USERS_CORS_ORIGIN: http://reverse-proxy-srv:8084
+    RESTAPI_FEED_PORT: '8085'
+    RESTAPI_FEED_CORS_ORIGIN: http://reverse-proxy-srv:8084
+    RESTAPI_USERS_HOST: http://restapi-users-srv:8087
+    IMG_MICROSERVICE_HOST: http://img-filter-srv:8086

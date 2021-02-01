@@ -2,10 +2,15 @@
     "name": "udagram-dtm-microservices",
     "version": "1.0.0",
     "scripts": {
-        "secrets": "kubectl apply -f ./k8s.secrets.yml",
-        "envs": "kubectl create configmap config-envs --from-env-file=./k8s.config-envs",
-        "deploy": "kubectl apply -f ./kubernetes.yml",
-        "hpa": "kubectl create -f ./k8s.autoscaler.yml",
-        "k8s": "npm run secrets && npm run envs && npm run deploy && npm run hpa"
+        "secrets": "kubectl apply -f ./kubernetes/k8s.secrets.yml",
+        "configmap": "kubectl create -f ./kubernetes/k8s.configMap.yml",
+        "metrics": "kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml",
+        "deploy": "kubectl apply -f ./kubernetes/k8s-udagram-dtm.yml",
+        "hpa": "kubectl create -f ./kubernetes/k8s.autoscaler.yml",
+        "netpolicy": "kubectl create -f ./kubernetes/k8s.networkPolicy.yml",
+        "udagram-dtm": "npm run secrets && npm run configmap && npm run metrics && npm run deploy && npm run hpa && npm run netpolicy",
+        "clear": "kubectl delete configmap,secrets,networkpolicy,hpa,service,deployment,pod --all && kubectl delete hpa,service,deployment,pod -n kube-system -l k8s-app=metrics-server",
+        "print-metrics": "kubectl get pods -n kube-system -l k8s-app=metrics-server",
+        "print": "kubectl get configmap,secrets,service,deployment,pod,hpa,networkpolicy"
     }
 }

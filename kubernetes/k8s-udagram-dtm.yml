@@ -12,8 +12,8 @@ spec:
         app: img-filter
     ports:
         - protocol: TCP
-          port: $(IMG_MSERV_PORT)
-          targetPort: $(IMG_MSERV_PORT)
+          port: 8086
+          targetPort: 8086
 
 ---
 apiVersion: apps/v1
@@ -34,17 +34,20 @@ spec:
         metadata:
             labels:
                 app: img-filter
-    spec:
-        containers:
-            - name: img-filter
-              image: dtmarangoni/udagram-dtm-img-filter
-              ports:
-                  - containerPort: $(IMG_MSERV_PORT)
-              envFrom:
-                  - configMapRef:
-                        name: config-envs
-                  - secretRef:
-                        name: secrets
+        spec:
+            containers:
+                - name: img-filter
+                  image: dtmarangoni/udagram-dtm-img-filter
+                  ports:
+                      - containerPort: 8086
+                  resources:
+                      requests:
+                          cpu: 200m
+                  envFrom:
+                      - configMapRef:
+                            name: config-envs
+                      - secretRef:
+                            name: secrets
 
 ---
 apiVersion: v1
@@ -61,8 +64,8 @@ spec:
         app: restapi-users
     ports:
         - protocol: TCP
-          port: $(RESTAPI_USERS_PORT)
-          targetPort: $(RESTAPI_USERS_PORT)
+          port: 8087
+          targetPort: 8087
 
 ---
 apiVersion: apps/v1
@@ -83,17 +86,20 @@ spec:
         metadata:
             labels:
                 app: restapi-users
-    spec:
-        containers:
-            - name: restapi-users
-              image: dtmarangoni/udagram-dtm-restapi-users
-              ports:
-                  - containerPort: $(RESTAPI_USERS_PORT)
-              envFrom:
-                  - configMapRef:
-                        name: config-envs
-                  - secretRef:
-                        name: secrets
+        spec:
+            containers:
+                - name: restapi-users
+                  image: dtmarangoni/udagram-dtm-restapi-users
+                  ports:
+                      - containerPort: 8087
+                  resources:
+                      requests:
+                          cpu: 200m
+                  envFrom:
+                      - configMapRef:
+                            name: config-envs
+                      - secretRef:
+                            name: secrets
 
 ---
 apiVersion: v1
@@ -110,8 +116,8 @@ spec:
         app: restapi-feed
     ports:
         - protocol: TCP
-          port: $(RESTAPI_FEED_PORT)
-          targetPort: $(RESTAPI_FEED_PORT)
+          port: 8085
+          targetPort: 8085
 
 ---
 apiVersion: apps/v1
@@ -132,17 +138,20 @@ spec:
         metadata:
             labels:
                 app: restapi-feed
-    spec:
-        containers:
-            - name: restapi-feed
-              image: dtmarangoni/udagram-dtm-restapi-feed
-              ports:
-                  - containerPort: $(RESTAPI_FEED_PORT)
-              envFrom:
-                  - configMapRef:
-                        name: config-envs
-                  - secretRef:
-                        name: secrets
+        spec:
+            containers:
+                - name: restapi-feed
+                  image: dtmarangoni/udagram-dtm-restapi-feed
+                  ports:
+                      - containerPort: 8085
+                  resources:
+                      requests:
+                          cpu: 200m
+                  envFrom:
+                      - configMapRef:
+                            name: config-envs
+                      - secretRef:
+                            name: secrets
 
 ---
 apiVersion: v1
@@ -161,6 +170,7 @@ spec:
         - protocol: TCP
           port: 8084
           targetPort: 8084
+    type: LoadBalancer
 
 ---
 apiVersion: apps/v1
@@ -181,12 +191,15 @@ spec:
         metadata:
             labels:
                 app: reverse-proxy
-    spec:
-        containers:
-            - name: reverse-proxy
-              image: dtmarangoni/udagram-dtm-reverse-proxy
-              ports:
-                  - containerPort: 8084
+        spec:
+            containers:
+                - name: reverse-proxy
+                  image: dtmarangoni/udagram-dtm-reverse-proxy
+                  ports:
+                      - containerPort: 8084
+                  resources:
+                      requests:
+                          cpu: 200m
 
 ---
 apiVersion: v1
@@ -226,9 +239,12 @@ spec:
         metadata:
             labels:
                 app: frontend-ionic
-    spec:
-        containers:
-            - name: frontend-ionic
-              image: dtmarangoni/udagram-dtm-frontend-ionic
-              ports:
-                  - containerPort: 80
+        spec:
+            containers:
+                - name: frontend-ionic
+                  image: dtmarangoni/udagram-dtm-frontend-ionic
+                  ports:
+                      - containerPort: 80
+                  resources:
+                      requests:
+                          cpu: 200m

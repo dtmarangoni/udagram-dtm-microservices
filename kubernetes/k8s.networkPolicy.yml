@@ -1,0 +1,64 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+    name: img-filter-netpolicy
+    labels:
+        part-of: udagram-dtm-microservices
+spec:
+    podSelector:
+        matchLabels:
+            app: img-filter
+    policyTypes:
+        - Ingress
+    ingress:
+        - from:
+              - podSelector:
+                    matchLabels:
+                        app: restapi-feed
+          ports:
+              - protocol: TCP
+                port: 8086
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+    name: restapi-users-netpolicy
+    labels:
+        part-of: udagram-dtm-microservices
+spec:
+    podSelector:
+        matchLabels:
+            app: restapi-users
+    policyTypes:
+        - Ingress
+    ingress:
+        - from:
+              - podSelector:
+                    matchExpressions:
+                        - { key: app, operator: In, values: [reverse-proxy, restapi-feed] }
+          ports:
+              - protocol: TCP
+                port: 8087
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+    name: restapi-feed-netpolicy
+    labels:
+        part-of: udagram-dtm-microservices
+spec:
+    podSelector:
+        matchLabels:
+            app: restapi-feed
+    policyTypes:
+        - Ingress
+    ingress:
+        - from:
+              - podSelector:
+                    matchLabels:
+                        app: reverse-proxy
+          ports:
+              - protocol: TCP
+                port: 8085
