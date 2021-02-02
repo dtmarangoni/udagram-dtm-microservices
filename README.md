@@ -75,5 +75,10 @@ The project is deployed in the AWS cloud, but if you want to try by your own ple
 
 9. To deploy all components in EKS run the command in your terminal:
     - `npm run udagram-dtm`
-10. Get your frontend endpoint and access the Udagram app from the browser:
-    - `kubectl get pods -l app=frontend-ionic`
+10. Get the reverse-proxy external IP:
+    - `kubectl get service -l app=reverse-proxy`
+11. Update the frontend environment.prod.ts API host with the reverse-proxy external IP;
+12. Update the git repository with the new code and trigger Travis CI process;
+13. Update kubernetes frontend pod with the latest image;
+14. Get your frontend endpoint and access the Udagram app from the browser:
+    - `kubectl get service -l app=frontend-ionic`
