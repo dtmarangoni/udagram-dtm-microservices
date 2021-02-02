@@ -5,7 +5,7 @@
         "secrets": "kubectl apply -f ./kubernetes/k8s.secrets.yml",
         "configmap": "kubectl create -f ./kubernetes/k8s.configMap.yml",
         "metrics": "kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml",
-        "deploy": "kubectl apply -f ./kubernetes/k8s-udagram-dtm.yml",
+        "deploy": "kubectl apply -f ./kubernetes/k8s.udagram-dtm.yml",
         "hpa": "kubectl create -f ./kubernetes/k8s.autoscaler.yml",
         "netpolicy": "kubectl create -f ./kubernetes/k8s.networkPolicy.yml",
         "udagram-dtm": "npm run secrets && npm run configmap && npm run metrics && npm run deploy && npm run hpa && npm run netpolicy",

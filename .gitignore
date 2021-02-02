@@ -3,7 +3,6 @@
 
 
 k8s.secrets.yml
-k8s.config-envs
 *~
 *.sw[mnpcod]
 *.log
