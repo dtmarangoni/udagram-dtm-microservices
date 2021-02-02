@@ -37,7 +37,8 @@ spec:
         spec:
             containers:
                 - name: img-filter
-                  image: dtmarangoni/udagram-dtm-img-filter
+                  image: dtmarangoni/udagram-dtm-img-filter:latest
+                  imagePullPolicy: Always
                   ports:
                       - containerPort: 8086
                   resources:
@@ -89,7 +90,8 @@ spec:
         spec:
             containers:
                 - name: restapi-users
-                  image: dtmarangoni/udagram-dtm-restapi-users
+                  image: dtmarangoni/udagram-dtm-restapi-users:latest
+                  imagePullPolicy: Always
                   ports:
                       - containerPort: 8087
                   resources:
@@ -141,7 +143,8 @@ spec:
         spec:
             containers:
                 - name: restapi-feed
-                  image: dtmarangoni/udagram-dtm-restapi-feed
+                  image: dtmarangoni/udagram-dtm-restapi-feed:latest
+                  imagePullPolicy: Always
                   ports:
                       - containerPort: 8085
                   resources:
@@ -194,7 +197,8 @@ spec:
         spec:
             containers:
                 - name: reverse-proxy
-                  image: dtmarangoni/udagram-dtm-reverse-proxy
+                  image: dtmarangoni/udagram-dtm-reverse-proxy:latest
+                  imagePullPolicy: Always
                   ports:
                       - containerPort: 8084
                   resources:
@@ -242,7 +246,8 @@ spec:
         spec:
             containers:
                 - name: frontend-ionic
-                  image: dtmarangoni/udagram-dtm-frontend-ionic
+                  image: dtmarangoni/udagram-dtm-frontend-ionic:latest
+                  imagePullPolicy: Always
                   ports:
                       - containerPort: 80
                   resources:
