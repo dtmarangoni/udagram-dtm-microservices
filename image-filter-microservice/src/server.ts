@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 
 import { IndexRouter } from './controllers/V0/index.router';
@@ -14,17 +15,20 @@ import { infoLogger, errorLogger } from './logger.middleware';
     const port = currentConfig.img_mserv_port;
 
     // CORS should be restricted
-    app.use(function (req, res, next) {
-        // CORS headers
-        res.header('Access-Control-Allow-Origin', currentConfig.cors_allowed_origin);
-        res.header(
-            'Access-Control-Allow-Headers',
-            'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-        );
-
-        // Proceed to next middleware
-        return next();
-    });
+    app.use(
+        cors({
+            allowedHeaders: [
+                'Origin',
+                'X-Requested-With',
+                'Content-Type',
+                'Accept',
+                'X-Access-Token',
+                'Authorization',
+            ],
+            methods: 'GET,HEAD,OPTIONS',
+            origin: currentConfig.cors_allowed_origin,
+        })
+    );
 
     // Use the body parser middleware for post requests
     app.use(bodyParser.json());

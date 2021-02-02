@@ -1,11 +1,10 @@
 // The Node Express entrance point
 
 import express from 'express';
-import { ErrorRequestHandler, Request, Response, NextFunction } from 'express';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 
 import { sequelize } from './database/sequelize';
-import { setCORS } from './middlewares/CORS.middleware';
 import { IndexRouter } from './controllers/v0/index.router';
 import { V0MODELS } from './controllers/v0/model.index';
 import { currentConfig } from './config/config';
@@ -23,11 +22,24 @@ import { errorHandler } from './middlewares/general.middleware';
     // Default port to listen
     const port = currentConfig.restapi_feed_port;
 
+    // CORS should be restricted
+    app.use(
+        cors({
+            allowedHeaders: [
+                'Origin',
+                'X-Requested-With',
+                'Content-Type',
+                'Accept',
+                'X-Access-Token',
+                'Authorization',
+            ],
+            methods: 'GET,HEAD,OPTIONS,PATCH,POST',
+            origin: currentConfig.cors_allowed_origin,
+        })
+    );
+
     // Body parser middleware
     app.use(bodyParser.json());
-
-    // CORS should be restricted
-    app.use(setCORS);
 
     // Server info logger middleware
     app.use(infoLogger);
