@@ -1,0 +1,205 @@
+> kubectl describe services
+Name:                     frontend-ionic-srv
+Namespace:                default
+Labels:                   app=frontend-ionic
+                          component=server
+                          part-of=udagram-dtm-microservices
+                          tier=frontend
+Annotations:              <none>
+Selector:                 app=frontend-ionic
+Type:                     LoadBalancer
+IP:                       10.100.92.245
+LoadBalancer Ingress:     af83ec67a710241739dab4fb7a886dbd-1117012392.sa-east-1.elb.amazonaws.com
+Port:                     <unset>  80/TCP
+TargetPort:               80/TCP
+NodePort:                 <unset>  30032/TCP
+Endpoints:                172.31.0.143:80
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+
+
+Name:              img-filter-srv
+Namespace:         default
+Labels:            app=img-filter
+                   component=server
+                   part-of=udagram-dtm-microservices
+                   tier=backend
+Annotations:       <none>
+Selector:          app=img-filter
+Type:              ClusterIP
+IP:                10.100.26.237
+Port:              <unset>  8086/TCP
+TargetPort:        8086/TCP
+Endpoints:         172.31.33.243:8086
+Session Affinity:  None
+Events:            <none>
+
+
+Name:              kubernetes
+Namespace:         default
+Labels:            component=apiserver
+                   provider=kubernetes
+Annotations:       <none>
+Selector:          <none>
+Type:              ClusterIP
+IP:                10.100.0.1
+Port:              https  443/TCP
+TargetPort:        443/TCP
+Endpoints:         172.31.44.241:443,172.31.5.111:443
+Session Affinity:  None
+Events:            <none>
+
+
+Name:              restapi-feed-srv
+Namespace:         default
+Labels:            app=restapi-feed
+                   component=server
+                   part-of=udagram-dtm-microservices
+                   tier=backend
+Annotations:       <none>
+Selector:          app=restapi-feed
+Type:              ClusterIP
+IP:                10.100.28.170
+Port:              <unset>  8085/TCP
+TargetPort:        8085/TCP
+Endpoints:         172.31.1.199:8085,172.31.40.5:8085
+Session Affinity:  None
+Events:            <none>
+
+
+Name:              restapi-users-srv
+Namespace:         default
+Labels:            app=restapi-users
+                   part-of=udagram-dtm-microservices
+                   tier=backend
+Annotations:       <none>
+Selector:          app=restapi-users
+Type:              ClusterIP
+IP:                10.100.180.69
+Port:              <unset>  8087/TCP
+TargetPort:        8087/TCP
+Endpoints:         172.31.38.125:8087
+Session Affinity:  None
+Events:            <none>
+
+
+Name:                     reverse-proxy-srv
+Namespace:                default
+Labels:                   app=reverse-proxy
+                          component=server
+                          part-of=udagram-dtm-microservices
+                          tier=backend
+Annotations:              <none>
+Selector:                 app=reverse-proxy
+Type:                     LoadBalancer
+IP:                       10.100.45.188
+LoadBalancer Ingress:     aca7c1455b6fa4210a1f816042080437-1889343813.sa-east-1.elb.amazonaws.com
+Port:                     <unset>  8084/TCP
+TargetPort:               8084/TCP
+NodePort:                 <unset>  32539/TCP
+Endpoints:                172.31.2.50:8084
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+
+
+> kubectl describe hpa
+Name:                                                  frontend-ionic-hpa
+Namespace:                                             default
+Labels:                                                part-of=udagram-dtm-microservices
+Annotations:                                           <none>
+CreationTimestamp:                                     Tue, 02 Feb 2021 19:43:38 -0300
+Reference:                                             Deployment/frontend-ionic
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  0% (1m) / 50%
+Min replicas:                                          1
+Max replicas:                                          3
+Deployment pods:                                       1 current / 1 desired
+Conditions:
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    ReadyForNewScale  recommended size matches current size
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooFewReplicas    the desired replica count is less than the minimum replica count
+Events:           <none>
+
+
+Name:                                                  img-filter-hpa
+Namespace:                                             default
+Labels:                                                part-of=udagram-dtm-microservices
+Annotations:                                           <none>
+CreationTimestamp:                                     Tue, 02 Feb 2021 19:43:38 -0300
+Reference:                                             Deployment/img-filter
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  0% (0) / 50%
+Min replicas:                                          1
+Max replicas:                                          3
+Deployment pods:                                       1 current / 1 desired
+Conditions:
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    ReadyForNewScale  recommended size matches current size
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooFewReplicas    the desired replica count is less than the minimum replica count
+Events:           <none>
+
+
+Name:                                                  restapi-feed-hpa
+Namespace:                                             default
+Labels:                                                part-of=udagram-dtm-microservices
+Annotations:                                           <none>
+CreationTimestamp:                                     Tue, 02 Feb 2021 19:43:38 -0300
+Reference:                                             Deployment/restapi-feed
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  0% (0) / 50%
+Min replicas:                                          2
+Max replicas:                                          3
+Deployment pods:                                       2 current / 2 desired
+Conditions:
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    ReadyForNewScale  recommended size matches current size
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooFewReplicas    the desired replica count is less than the minimum replica count
+Events:           <none>
+
+
+Name:                                                  restapi-users-hpa
+Namespace:                                             default
+Labels:                                                part-of=udagram-dtm-microservices
+Annotations:                                           <none>
+CreationTimestamp:                                     Tue, 02 Feb 2021 19:43:38 -0300
+Reference:                                             Deployment/restapi-users
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  0% (0) / 50%
+Min replicas:                                          1
+Max replicas:                                          3
+Deployment pods:                                       1 current / 1 desired
+Conditions:
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    ReadyForNewScale  recommended size matches current size
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooFewReplicas    the desired replica count is less than the minimum replica count
+Events:           <none>
+
+
+Name:                                                  reverse-proxy-hpa
+Namespace:                                             default
+Labels:                                                part-of=udagram-dtm-microservices
+Annotations:                                           <none>
+CreationTimestamp:                                     Tue, 02 Feb 2021 19:43:38 -0300
+Reference:                                             Deployment/reverse-proxy
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  0% (1m) / 50%
+Min replicas:                                          1
+Max replicas:                                          3
+Deployment pods:                                       1 current / 1 desired
+Conditions:
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    ReadyForNewScale  recommended size matches current size
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooFewReplicas    the desired replica count is less than the minimum replica count
+Events:           <none>

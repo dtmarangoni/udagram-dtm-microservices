@@ -5,7 +5,7 @@
 k8s.secrets.yml
 *~
 *.sw[mnpcod]
-*.log
+log/
 *.tmp
 *.tmp.*
 log.txt

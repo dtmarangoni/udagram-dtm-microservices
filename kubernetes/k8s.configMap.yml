@@ -8,8 +8,8 @@ data:
     IMG_MSERV_PORT: '8086'
     IMG_MSERV_CORS_ORIGIN: http://restapi-feed-srv:8085
     RESTAPI_USERS_PORT: '8087'
-    RESTAPI_USERS_CORS_ORIGIN: http://reverse-proxy-srv:8084
+    RESTAPI_USERS_CORS_ORIGIN: http://af83ec67a710241739dab4fb7a886dbd-1117012392.sa-east-1.elb.amazonaws.com
     RESTAPI_FEED_PORT: '8085'
-    RESTAPI_FEED_CORS_ORIGIN: http://reverse-proxy-srv:8084
+    RESTAPI_FEED_CORS_ORIGIN: http://af83ec67a710241739dab4fb7a886dbd-1117012392.sa-east-1.elb.amazonaws.com
     RESTAPI_USERS_HOST: http://restapi-users-srv:8087
     IMG_MICROSERVICE_HOST: http://img-filter-srv:8086

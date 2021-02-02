@@ -1,7 +1,5 @@
 # Udagram Microservices
 
-    PROJECT IN PROGRESS
-
 This is the Udagram, second project of Udacity Cloud Developer Nanodegree, refactored from monolith to microservices using Docker containers and CI/CD pipelines with Travis and Kubernetes.
 
 Users will be able to post photos to a feed and process it using an image filtering.
@@ -34,6 +32,10 @@ The Kubernetes application configuration files are located in kubernetes folder 
 -   k8s.secrets.yml - a k8s secrets containing the project sensitive environment variables;
 -   k8s.autoscaler.yml - the horizontal pod autoscaler configuration file;
 -   k8s.networkPolicy.yml - the ingress network policy for all required pods in the application;
+
+## Current Frontend Endpoint
+
+Current Kubernetes Ionic frontend endpoint: [Udagram Microservices](http://af83ec67a710241739dab4fb7a886dbd-1117012392.sa-east-1.elb.amazonaws.com/home).
 
 ## Installation instructions
 

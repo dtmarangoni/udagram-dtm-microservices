@@ -1,0 +1,43 @@
+> kubectl get configmap,secrets,service,deployment,pod,hpa,networkpolicy
+
+NAME                    DATA   AGE
+configmap/config-envs   8      64m
+
+NAME                         TYPE                                  DATA   AGE
+secret/default-token-8qmtz   kubernetes.io/service-account-token   3      95m
+secret/secrets               Opaque                                11     94m
+
+NAME                         TYPE           CLUSTER-IP      EXTERNAL-IP                                                               PORT(S)          AGE
+service/frontend-ionic-srv   LoadBalancer   10.100.92.245   af83ec67a710241739dab4fb7a886dbd-1117012392.sa-east-1.elb.amazonaws.com   80:30032/TCP     94m
+service/img-filter-srv       ClusterIP      10.100.26.237   <none>                                                                    8086/TCP         94m
+service/kubernetes           ClusterIP      10.100.0.1      <none>                                                                    443/TCP          95m
+service/restapi-feed-srv     ClusterIP      10.100.28.170   <none>                                                                    8085/TCP         94m
+service/restapi-users-srv    ClusterIP      10.100.180.69   <none>                                                                    8087/TCP         94m
+service/reverse-proxy-srv    LoadBalancer   10.100.45.188   aca7c1455b6fa4210a1f816042080437-1889343813.sa-east-1.elb.amazonaws.com   8084:32539/TCP   94m
+
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/frontend-ionic   1/1     1            1           64m
+deployment.apps/img-filter       1/1     1            1           64m
+deployment.apps/restapi-feed     2/2     2            2           64m
+deployment.apps/restapi-users    1/1     1            1           64m
+deployment.apps/reverse-proxy    1/1     1            1           64m
+
+NAME                                  READY   STATUS    RESTARTS   AGE
+pod/frontend-ionic-778bd8f66d-f4wpz   1/1     Running   0          64m
+pod/img-filter-5966df74c6-szsk9       1/1     Running   0          64m
+pod/restapi-feed-55dd46df96-54w6j     1/1     Running   0          64m
+pod/restapi-feed-55dd46df96-bjl6k     1/1     Running   0          64m
+pod/restapi-users-7f74bf5bc4-629bj    1/1     Running   0          64m
+pod/reverse-proxy-6bb84b6d86-46vph    1/1     Running   0          64m
+
+NAME                                                     REFERENCE                   TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/frontend-ionic-hpa   Deployment/frontend-ionic   0%/50%    1         3         1          64m
+horizontalpodautoscaler.autoscaling/img-filter-hpa       Deployment/img-filter       0%/50%    1         3         1          64m
+horizontalpodautoscaler.autoscaling/restapi-feed-hpa     Deployment/restapi-feed     0%/50%    2         3         2          64m
+horizontalpodautoscaler.autoscaling/restapi-users-hpa    Deployment/restapi-users    0%/50%    1         3         1          64m
+horizontalpodautoscaler.autoscaling/reverse-proxy-hpa    Deployment/reverse-proxy    0%/50%    1         3         1          64m
+
+NAME                                                      POD-SELECTOR        AGE
+networkpolicy.networking.k8s.io/img-filter-netpolicy      app=img-filter      64m
+networkpolicy.networking.k8s.io/restapi-feed-netpolicy    app=restapi-feed    64m
+networkpolicy.networking.k8s.io/restapi-users-netpolicy   app=restapi-users   64m
