@@ -8,18 +8,10 @@ All frontend code was provided as part of the course.
 
 ## Installation instructions
 
-The app is deployed in the cloud, but if you want to run it locally please the instructions below.
-
-1. Requirements:
-
-    - [Install Node.js](https://nodejs.org/en/) (tested with Node.Js 14);
-    - [Install Ionic](https://ionicframework.com/docs/intro/cli).
-
-2. Download and install the required npm packages: `npm i`
-3. Run de dev server: `npm run dev`
+The installation instructions are in the project root (/udagram-dtm-microservices) README.
 
 ## Reference
 
-The reference code and detailed installation instructions can be found in the link below:
+The reference base code can be found in the link below:
 
 -   [Ionic Web App Frontend](https://github.com/udacity/cloud-developer/tree/master/course-02/exercises/udacity-c2-frontend)
